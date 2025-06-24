@@ -17,7 +17,7 @@ app.set('view engine', 'ejs')
 
 // khai báo các route
 app.get('/', (req, res) => {
-    res.send('Hello World! Linga guliguli')
+    res.send('Hello World! Linga guliguli Nodemon!')
 })
 
 app.get('/abc', (req, res) => {
