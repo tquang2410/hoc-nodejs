@@ -1,16 +1,9 @@
 const { getConnection } = require('../config/database');
-
+const { getAllUsers } = require('../services/CRUDService');
 const getHomePage = async (req, res) => {
-    try {
-        const connection = await getConnection();
-        const [results, fields] = await connection.query('SELECT * FROM Users');
-        await connection.end();
-        res.render('home.ejs', { users: results });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Lỗi truy vấn database');
-    }
-};
+    let results = await getAllUsers();
+    return res.render('home.ejs', {listUsers: results })
+}
 
 const getAboutPage = (req, res) => {
     res.send('About me');

@@ -35,6 +35,8 @@
     </ul>
 </nav>
 <div class="table-container">
+<!--    Đang thử xem có lấy giá trị từ database ra được không-->
+
     <div class="title">
         List Users
     </div>
@@ -45,28 +47,27 @@
         <th>Email</th>
         <th>Name</th>
         <th>City</th>
+        <th>Actions</th>
     </tr>
-    <tr>
-        <td>Peter</td>
-        <td>Griffin</td>
-        <td>$100</td>
-        <td>Da Nang</td>
-    </tr>
-    <tr>
-        <td>Lois</td>
-        <td>Griffin</td>
-        <td>$150</td>
-    </tr>
-    <tr>
-        <td>Joe</td>
-        <td>Swanson</td>
-        <td>$300</td>
-    </tr>
-    <tr>
-        <td>Cleveland</td>
-        <td>Brown</td>
-        <td>$250</td>
-    </tr>
+    <!-- Thay thế toàn bộ các <tr> hardcode bằng: -->
+    <% if (listUsers && listUsers.length > 0) { %>
+        <% listUsers.forEach(function(user) { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.name %></td>
+                <td><%= user.city %></td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        <% }); %>
+    <% } else { %>
+        <tr>
+            <td colspan="5" style="text-align: center;">Không có dữ liệu</td>
+        </tr>
+    <% } %>
 </table>
 </div>
 </body>
