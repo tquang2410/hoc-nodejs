@@ -9,6 +9,9 @@ const webRoutes = require('./routes/web');
 // Lấy các biến môi trường từ file .env
 const port = process.env.PORT || 3000; // Mặc định là 3000 nếu không có trong .env
 const hostname = process.env.HOST_NAME || 'localhost';
+// cấu hình body-parser để xử lý dữ liệu từ form
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Để xử lý JSON
 
 
 // cấu hình view engine

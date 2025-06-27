@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<div>
 <nav class="navbar">
     <ul>
         <li><a href="default.asp">Home</a></li>
@@ -14,5 +15,31 @@
         <li><a href="about.asp">About</a></li>
     </ul>
 </nav>
+ <div class="form-add-new">
+     <form action="/create-user" method="POST">
+
+     <fieldset>
+         <legend>Add new users</legend>
+
+     <div class="input-group">
+         <label>Email: </label>
+         <input type="text" id="emailId" name="email"/>
+     </div>
+     <div class="input-group">
+         <label>Name: </label>
+         <input type="text" name="myname"/>
+     </div>
+     <div class="input-group">
+         <label>City: </label>
+         <input type="text" name="city"/>
+     </div>
+         <div class="button">
+             <button> Save </button>
+         </div>
+     </fieldset>
+     </form>
+ </div>
+
+</div>
 </body>
 </html>

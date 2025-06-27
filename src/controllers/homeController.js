@@ -14,8 +14,14 @@ const getAboutPage = (req, res) => {
  const getContactPage = (req, res) => {
      res.render('sample.ejs')
  }
+ const postCreateUser = (req, res) => {
+    console.log("req.body", req.body)
+        // Xử lý tạo người dùng mới
+     res.send('Create user')
+ }
 module.exports ={
     getHomePage,
     getAboutPage,
-    getContactPage
+    getContactPage,
+    postCreateUser
 }
