@@ -16,8 +16,23 @@ const getAboutPage = (req, res) => {
  }
  const postCreateUser = (req, res) => {
     console.log("req.body", req.body)
+     let email = req.body.email;
+        let name = req.body.myname;
+        let city = req.body.city;
+        console.log("email", email,'name=', name, 'city=', city);
+        // let {email, myname, city} = req.body;
         // Xử lý tạo người dùng mới
-     res.send('Create user')
+     // INSERT INTO Users (email, name, city)
+     // VALUES ("test@gmail.com", "Wang", "Da Nang");
+     res.send('Create user successfully');
+     connection.query(
+         `INSERT INTO Users (email, name, city) 
+        VALUES (?, ?, ?)`,
+         [email, name, city],
+         function (err, results) {
+             console.log(results);
+         }
+     );
  }
 module.exports ={
     getHomePage,
