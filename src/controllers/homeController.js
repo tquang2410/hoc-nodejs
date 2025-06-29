@@ -16,7 +16,7 @@ const getContactPage = (req, res) => {
 
 const postCreateUser = async (req, res) => {
     try {
-        const { email, myname: name, city } = req.body;
+        const { email, name, city } = req.body;
         const connection = await getConnection();
         const [results, fields] = await connection.query(
             'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)',
@@ -33,10 +33,14 @@ const postCreateUser = async (req, res) => {
 const getCreatePage = (req, res) => {
     res.render('create.ejs');
 };
+const getUpdatePage = (req, res) => {
+    res.render('update.ejs');
+};
 module.exports = {
     getHomePage,
     getAboutPage,
     getContactPage,
     postCreateUser,
-    getCreatePage
+    getCreatePage,
+    getUpdatePage
 };

@@ -35,7 +35,6 @@
     </ul>
 </nav>
 <div class="table-container">
-<!--    Đang thử xem có lấy giá trị từ database ra được không-->
 
     <div class="title">
         List Users
@@ -49,7 +48,6 @@
         <th>City</th>
         <th>Actions</th>
     </tr>
-    <!-- Thay thế toàn bộ các <tr> hardcode bằng: -->
     <% if (listUsers && listUsers.length > 0) { %>
         <% listUsers.forEach(function(user) { %>
             <tr>
@@ -58,7 +56,7 @@
                 <td><%= user.name %></td>
                 <td><%= user.city %></td>
                 <td>
-                    <button>Edit</button>
+                    <a href="/update">Edit</a>
                     <button>Delete</button>
                 </td>
             </tr>
