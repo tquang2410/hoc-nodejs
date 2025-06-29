@@ -7,7 +7,7 @@ router.get('/about', getAboutPage);
 router.get('/contact', getContactPage);
 
 router.get('/create', getCreatePage);
-router.get('/update', getUpdatePage);
+router.get('/update/:id', getUpdatePage);
 
 router.post('/create-user', postCreateUser);
 module.exports = router;

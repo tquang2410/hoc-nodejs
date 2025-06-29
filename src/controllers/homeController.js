@@ -34,6 +34,8 @@ const getCreatePage = (req, res) => {
     res.render('create.ejs');
 };
 const getUpdatePage = (req, res) => {
+    const userId = req.params.id;
+    console.log('userId:', userId);
     res.render('update.ejs');
 };
 module.exports = {
