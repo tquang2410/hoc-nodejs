@@ -1,5 +1,5 @@
 const { getConnection } = require('../config/database');
-const { getAllUsers } = require('../services/CRUDService');
+const { getAllUsers, getUserById, updateUserById } = require('../services/CRUDService');
 const getHomePage = async (req, res) => {
     let results = await getAllUsers();
     return res.render('home.ejs', {listUsers: results })
@@ -33,16 +33,52 @@ const postCreateUser = async (req, res) => {
 const getCreatePage = (req, res) => {
     res.render('create.ejs');
 };
-const getUpdatePage = (req, res) => {
-    const userId = req.params.id;
-    console.log('userId:', userId);
-    res.render('update.ejs');
+// const getUpdatePage = (req, res) => {
+//     const userId = req.params.id;
+//     console.log('userId:', userId);
+//     res.render('update.ejs');
+// };
+const getUpdatePage = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await getUserById(userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        res.render('update.ejs', { user: user });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Lỗi khi lấy thông tin user');
+    }
 };
+const postUpdateUser = async (req, res) => {
+    try {
+        const { id, email, name, city } = req.body;
+        await updateUserById(id, email, name, city);
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Lỗi cập nhật user');
+    }
+};
+const postDeleteUser =  async (req, res) => {
+    const userId = req.params.id;
+    let user = await getUserById(userId);
+    res.render('delete.ejs', { user: user });
+}
+const postHandleRemoveUser = async (req, res) => {
+    res.send('Delete user successfully!');
+}
 module.exports = {
     getHomePage,
     getAboutPage,
     getContactPage,
     postCreateUser,
     getCreatePage,
-    getUpdatePage
+    getUpdatePage,
+    postUpdateUser,
+    postDeleteUser,
+    postHandleRemoveUser
 };
